@@ -11,7 +11,7 @@ import Portfolio from "@/components/Portfolio";
 
 export default function Home() {
   return (
-    <main className="overflow-hidden">
+    <main className="overflow-hidden px-6!">
       <Navigation />
       <Hero />
       <About />

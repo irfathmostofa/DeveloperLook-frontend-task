@@ -1,9 +1,15 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
-import { ReactNode } from "react";
+import { color, motion, Variants } from "framer-motion";
+import { ReactNode, useEffect, useState } from "react";
 
 export default function Hero(): ReactNode {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -25,124 +31,144 @@ export default function Hero(): ReactNode {
   };
 
   const cardVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.8, rotate: 5 },
+    hidden: { opacity: 0, scale: 0.95 },
     visible: (i: number) => ({
       opacity: 1,
       scale: 1,
-      rotate: 0,
       transition: {
-        duration: 0.8,
-        delay: 0.4 + i * 0.15,
+        duration: 0.6,
+        delay: 0.3 + i * 0.1,
         ease: "easeOut",
       },
     }),
   };
 
-  const statCards: Array<{
-    number: string;
-    title: string;
-    subtitle: string;
-    video: string;
-    bgColor: string;
-  }> = [
+  // Define the 4 cards as per your specification
+  const cards = [
     {
+      id: 1,
+      type: "content",
       number: "10M+",
       title: "Organische views",
       subtitle: "Groei door slimme content",
-      video: "https://gethyped.b-cdn.net/Salontopper/Loop%20Salontopper.mp4",
-      bgColor: "from-blue-400 to-blue-500",
+      video: null,
+      color: "bg-[#0d8dff]",
     },
     {
+      id: 2,
+      type: "video",
+      number: null,
+      title: null,
+      subtitle: null,
+      video: "https://gethyped.b-cdn.net/Salontopper/Loop%20Salontopper.mp4",
+      color: null,
+    },
+    {
+      id: 3,
+      type: "content",
       number: "30+",
       title: "Merken geholpen",
       subtitle: "Van start-up tot multinational",
+      video: null,
+      color: "bg-[#33c791]",
+    },
+    {
+      id: 4,
+      type: "video",
+      number: null,
+      title: null,
+      subtitle: null,
       video: "https://gethyped.b-cdn.net/Petrol%20Head/petrolhead-loop.mp4",
-      bgColor: "from-green-400 to-green-500",
+      color: null,
     },
   ];
 
   return (
-    <section className="min-h-screen pt-32 pb-20 px-6 relative overflow-hidden">
-      {/* Animated background */}
-      <motion.div
-        animate={{ y: [0, 30, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-pink-500/20 to-orange-500/10 rounded-full blur-3xl pointer-events-none"
-      />
+    <section className="!mt-30 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden min-h-screen flex items-center">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-72 h-72 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse delay-1000" />
+      </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-full mx-auto relative z-10 w-full">
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
-          className="text-center mb-16"
+          animate={isVisible ? "visible" : "hidden"}
         >
           {/* Main Headline */}
           <motion.h1
             variants={itemVariants}
-            className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 tracking-tight text-center sm:text-left"
           >
-            Get{" "}
-            <span className="bg-gradient-to-r from-pink-500 via-orange-500 to-pink-500 bg-clip-text text-transparent">
-              Hyped
-            </span>
-            . Get{" "}
-            <span className="bg-gradient-to-r from-pink-500 via-orange-500 to-pink-500 bg-clip-text text-transparent">
-              Noticed
-            </span>
-            . Get{" "}
-            <span className="bg-gradient-to-r from-pink-500 via-orange-500 to-pink-500 bg-clip-text text-transparent">
-              Results
-            </span>
-            .
+            Get Hyped . Get
+            <br />
+            Noticed . Get Results .
           </motion.h1>
 
           {/* Subtitle */}
           <motion.p
             variants={itemVariants}
-            className="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto mb-12"
+            className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 max-w-2xl mb-12! md:mb-16 text-center sm:text-left"
           >
-            Klaar met gokken op content <br />
-            die niets oplevert?
+            Klaar met gokken op content <br /> die niets oplevert?
           </motion.p>
 
-          {/* Stats Section */}
+          {/* 2x2 Grid for 4 Cards */}
           <motion.div
             variants={itemVariants}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16 md:mt-24"
+            className="grid grid-cols-1 sm:grid-cols-2 mt-10 lg:grid-cols-4 gap-6 md:gap-8 max-w-full mx-auto"
           >
-            {statCards.map((card, index) => (
+            {cards.map((card, index) => (
               <motion.div
-                key={index}
+                key={card.id}
                 custom={index}
                 variants={cardVariants}
-                className="relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow"
+                className="group"
               >
-                <div
-                  className={`absolute top-4 right-4 w-16 h-16 bg-gradient-to-br ${card.bgColor} rounded-lg opacity-20`}
-                />
-                <div className="relative">
-                  <div className="text-5xl font-bold bg-gradient-to-r from-pink-500 to-orange-500 bg-clip-text text-transparent mb-2">
-                    {card.number}
+                {card.type === "content" ? (
+                  // Content Card (Text only) - height 300px
+                  <div
+                    className={`
+                  ${card.color}
+                   backdrop-blur-sm h-[400px] rounded-2xl p-6 md:p-8 text-left shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-white/20 flex flex-col justify-center
+                  relative 
+                  `}
+                  >
+                    <div className="text-4xl md:text-5xl lg:text-6xl font-bold mb-3 absolute top-6 left-6 ">
+                      {card.number}
+                    </div>
+                    <div className="absolute bottom-6 left-6">
+                      <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-1  ">
+                        {card.title}
+                      </h3>
+                      <hr />
+                      <p className="text-gray-900 text-sm">{card.subtitle}</p>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    {card.title}
-                  </h3>
-                  <div className="w-12 h-1 bg-gradient-to-r from-pink-500 to-orange-500 rounded-full mb-3" />
-                  <p className="text-gray-600">{card.subtitle}</p>
-                </div>
-
-                {/* Video Overlay */}
-                <motion.div className="mt-6 rounded-lg overflow-hidden h-40 bg-gray-100">
-                  <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    src={card.video}
-                    className="w-full h-full object-cover"
-                  />
-                </motion.div>
+                ) : (
+                  // Video Card - height 300px, no controls
+                  <div className="relative h-[400px] rounded-2xl overflow-hidden bg-gray-100 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      disablePictureInPicture
+                      controlsList="nodownload noplaybackrate nofullscreen"
+                      src={card.video || undefined}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      style={{ pointerEvents: "none" }}
+                    />
+                    {/* Play indicator overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                      <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center backdrop-blur-sm">
+                        <div className="w-0 h-0 border-t-8 border-t-transparent border-l-14 border-l-black border-b-8 border-b-transparent ml-1" />
+                      </div>
+                    </div>
+                  </div>
+                )}
               </motion.div>
             ))}
           </motion.div>
