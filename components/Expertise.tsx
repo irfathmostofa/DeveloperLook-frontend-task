@@ -12,7 +12,7 @@ interface ExpertiseItem {
   video: string;
   gradient: string;
   tagline: string;
-  ease?:string;
+  ease?: string;
 }
 
 const expertiseData: ExpertiseItem[] = [
@@ -211,6 +211,8 @@ export default function Expertise(): ReactNode {
           position: relative;
           border-radius: 1rem;
           transform-origin: center top;
+          margin-bottom: 2rem;
+          margin-top: 2rem;
         }
 
         .c-card__figure video {
