@@ -10,8 +10,6 @@ export default function Navigation(): ReactNode {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const navItems = ["Expertises", "Work", "About", "Contact"];
-
   // Hide navbar on scroll down
   useEffect(() => {
     const controlNavigation = () => {
@@ -48,7 +46,7 @@ export default function Navigation(): ReactNode {
             {/* Desktop Navigation - Centered */}
             <div className="hidden md:flex absolute left-1/2 -translate-x-1/2">
               <div className="flex gap-0.5! items-center bg-white rounded-lg p-1!  ">
-                {navItems.map((item) => (
+                {["Expertises", "Work", "About", "Contact"].map((item) => (
                   <Link
                     key={item}
                     href="#"
@@ -120,7 +118,7 @@ export default function Navigation(): ReactNode {
                 className="md:hidden absolute top-16 left-4 right-4 bg-white rounded-2xl shadow-xl border border-gray-100"
               >
                 <div className="p-4 flex flex-col gap-1">
-                  {navItems.map((item) => (
+                  {["Expertises", "Work", "About", "Contact"].map((item) => (
                     <Link
                       key={item}
                       href="#"

@@ -19,9 +19,9 @@ export default function Home() {
         <Expertise />
         <Portfolio />
         <Brands />
-        <CTA />
-        <Footer />
       </main>
+      <CTA />
+      <Footer />
     </>
   );
 }
