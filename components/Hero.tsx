@@ -1,6 +1,6 @@
 "use client";
 
-import { color, motion, Variants } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { ReactNode, useEffect, useState } from "react";
 
 export default function Hero(): ReactNode {
@@ -43,6 +43,9 @@ export default function Hero(): ReactNode {
     }),
   };
 
+  // Card rotation angles for each card (reduced to prevent edge clipping)
+  const cardRotations = [4, 4, -2, -2]; // Reduced rotation degrees for better visibility
+
   // Define the 4 cards as per your specification
   const cards = [
     {
@@ -84,12 +87,8 @@ export default function Hero(): ReactNode {
   ];
 
   return (
-    <section className="!mt-30 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden min-h-screen flex items-center">
+    <section className="pt-32! pb-18! px-4 sm:px-6 lg:px-8 relative overflow-x-clip overflow-y-visible min-h-screen flex items-center">
       {/* Background decorative elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-72 h-72 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse delay-1000" />
-      </div>
 
       <div className="max-w-full mx-auto relative z-10 w-full">
         <motion.div
@@ -100,73 +99,89 @@ export default function Hero(): ReactNode {
           {/* Main Headline */}
           <motion.h1
             variants={itemVariants}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 tracking-tight text-center sm:text-left"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-[90px] lg:leading-[86px] font-bold mb-6 tracking-tight text-center sm:text-left text-[#161616]"
           >
-            Get Hyped . Get
+            Get Hyped. Get
             <br />
-            Noticed . Get Results .
+            Noticed. Get Results.
           </motion.h1>
 
           {/* Subtitle */}
           <motion.p
             variants={itemVariants}
-            className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 max-w-2xl mb-12! md:mb-16 text-center sm:text-left"
+            className="text-base sm:text-lg md:text-xl font-bold text-gray-900 max-w-2xl mt-5 mb-12 md:mb-16 text-center sm:text-left"
           >
             Klaar met gokken op content <br /> die niets oplevert?
           </motion.p>
 
-          {/* 2x2 Grid for 4 Cards */}
+          {/* Container for the overlapping card effect */}
           <motion.div
             variants={itemVariants}
-            className="grid grid-cols-1 sm:grid-cols-2 mt-10 lg:grid-cols-4 gap-6 md:gap-8 max-w-full mx-auto"
+            className="flex flex-nowrap justify-center items-center w-full max-w-full mx-auto py-5! px-4! group/container"
+            initial="hidden"
+            animate={isVisible ? "visible" : "hidden"}
           >
             {cards.map((card, index) => (
               <motion.div
                 key={card.id}
                 custom={index}
                 variants={cardVariants}
-                className="group"
+                // className="relative w-[280px] md:w-[320px] shrink-0 transition-all duration-500 ease-out"
+                style={{
+                  rotate: cardRotations[index],
+                  zIndex: index,
+                  // Using negative margin for initial overlap
+                  marginLeft: index === 0 ? 0 : "-40px",
+                }}
+                // This is the secret sauce:
+                // When the PARENT is hovered, we shift individual cards
+                whileHover={{
+                  scale: 1.05,
+                  rotate: 0,
+                  zIndex: 50,
+                  x: 0, // Reset any translation on the active card
+                  marginLeft: "40px",
+                  marginRight: "80px",
+                  transition: { duration: 0.1 },
+                }}
+                // Moves cards slightly left/right when the container is hovered to "expand" the stack
+                animate={{
+                  x: isVisible ? 0 : 10,
+                }}
+                // Use Tailwind's group-hover on the container to adjust margins
+                className={`relative w-[280px] md:w-[320px] shrink-0 transition-all duration-200  
+        ${index !== 0 ? "group-hover/container:ml-4" : ""} 
+      `}
               >
                 {card.type === "content" ? (
-                  // Content Card (Text only) - height 300px
                   <div
-                    className={`
-                  ${card.color}
-                   backdrop-blur-sm h-[400px] rounded-2xl p-6 md:p-8 text-left shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-white/20 flex flex-col justify-center
-                  relative 
-                  `}
+                    className={`${card.color} h-[400px] md:h-[450px] rounded-[40px] p-8! flex flex-col justify-between border border-white/10`}
                   >
-                    <div className="text-4xl md:text-5xl lg:text-6xl font-bold mb-3 absolute top-6 left-6 ">
+                    <div className="text-6xl md:text-7xl font-bold text-black tracking-tighter">
                       {card.number}
                     </div>
-                    <div className="absolute bottom-6 left-6">
-                      <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-1  ">
+                    <div>
+                      <h3 className="text-xl md:text-2xl font-bold text-black mb-2">
                         {card.title}
                       </h3>
-                      <hr />
-                      <p className="text-gray-900 text-sm">{card.subtitle}</p>
+                      <div className="h-[1.5px] bg-black/80 mb-3 w-full" />
+                      <p className="text-black/80 text-sm md:text-base font-medium">
+                        {card.subtitle}
+                      </p>
                     </div>
                   </div>
                 ) : (
-                  // Video Card - height 300px, no controls
-                  <div className="relative h-[400px] rounded-2xl overflow-hidden bg-gray-100 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                  <div className="relative h-[400px] md:h-[450px] rounded-[40px] overflow-hidden bg-gray-200">
                     <video
                       autoPlay
                       muted
                       loop
                       playsInline
-                      disablePictureInPicture
-                      controlsList="nodownload noplaybackrate nofullscreen"
-                      src={card.video || undefined}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      style={{ pointerEvents: "none" }}
+                      src={card.video || ""}
+                      className="w-full h-full object-cover"
                     />
-                    {/* Play indicator overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                      <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center backdrop-blur-sm">
-                        <div className="w-0 h-0 border-t-8 border-t-transparent border-l-14 border-l-black border-b-8 border-b-transparent ml-1" />
-                      </div>
-                    </div>
+                    {/* Subtle vignette for the video cards to match the aesthetic */}
+                    <div className="absolute inset-0 bg-black/5 pointer-events-none" />
                   </div>
                 )}
               </motion.div>

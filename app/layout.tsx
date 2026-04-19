@@ -71,7 +71,7 @@ export default function RootLayout({ children }: RootLayoutProps): ReactNode {
         <link rel="canonical" href="https://gethyped.nl" />
         <meta name="theme-color" content="#ec4899" />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased bg-[#faf4ec]">{children}</body>
     </html>
   );
 }

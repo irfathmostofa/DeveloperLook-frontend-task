@@ -6,17 +6,19 @@
   box-sizing: border-box;
 }
 
+/* Firefox */
 html {
-  scroll-behavior: smooth;
+  scrollbar-width: none;
 }
 
-body {
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
-  background-color: #faf4ec;
-  color: #000000;
-  line-height: 1.6;
-  overflow-x: hidden;
+/* Chrome, Safari, Opera */
+html::-webkit-scrollbar {
+  display: none;
+}
+
+/* IE and Edge */
+html {
+  -ms-overflow-style: none;
 }
 
 /* Scrollbar Styling */

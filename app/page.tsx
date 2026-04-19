@@ -11,15 +11,17 @@ import Portfolio from "@/components/Portfolio";
 
 export default function Home() {
   return (
-    <main className="overflow-hidden px-6!">
+    <>
       <Navigation />
-      <Hero />
-      <About />
-      <Expertise />
-      {/* <Portfolio />
-      <Brands />
-      <CTA />
-      <Footer /> */}
-    </main>
+      <main className="overflow-hidden px-7!">
+        <Hero />
+        <About />
+        <Expertise />
+        <Portfolio />
+        <Brands />
+        <CTA />
+        <Footer />
+      </main>
+    </>
   );
 }

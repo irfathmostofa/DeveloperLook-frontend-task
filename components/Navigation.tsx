@@ -40,19 +40,19 @@ export default function Navigation(): ReactNode {
           transition={{ duration: 0.3 }}
           className="fixed top-0 left-0 px-10 right-0 z-50  "
         >
-          <div className="max-w-full !px-6  mx-auto  lg:px-8 h-16 flex items-center justify-between">
+          <div className="max-w-full px-7! mx-auto h-21 flex items-center justify-between">
             {/* Logo */}
 
-            <Logo />
+            <Logo className="h-14 " />
 
             {/* Desktop Navigation - Centered */}
             <div className="hidden md:flex absolute left-1/2 -translate-x-1/2">
-              <div className="flex gap-1  items-center bg-white rounded-md px-2">
+              <div className="flex gap-0.5! items-center bg-white rounded-lg p-1!  ">
                 {navItems.map((item) => (
                   <Link
                     key={item}
                     href="#"
-                    className="relative px-3! py-1!  text-sm font-medium rounded-md overflow-hidden group"
+                    className="relative px-3! py-1.5! text-sm font-medium rounded-md overflow-hidden group"
                   >
                     {/* Orange top border */}
 
@@ -63,7 +63,7 @@ export default function Navigation(): ReactNode {
                     <span className="absolute inset-0 bg-gray-900 rounded-md transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out delay-75" />
 
                     {/* Text */}
-                    <span className="relative z-10 text-gray-700 group-hover:text-white transition-colors duration-200">
+                    <span className="relative z-10 text-[12px] text-[#161616]! font-semibold group-hover:text-white! transition-colors animate-bounce duration-200">
                       {item}
                     </span>
                   </Link>
