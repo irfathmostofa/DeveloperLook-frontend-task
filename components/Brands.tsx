@@ -79,11 +79,11 @@ const brands: Brand[] = [
 ];
 
 export default function Brands(): ReactNode {
-  // Duplicate brands for seamless loop
-  const displayBrands: Brand[] = [...brands, ...brands];
+  // Triplicate brands for even smoother loop
+  const displayBrands: Brand[] = [...brands, ...brands, ...brands];
 
   return (
-    <section className="py-15! px-6! ">
+    <section className="py-15! px-6!">
       <div className="max-w-full! mx-auto!">
         {/* Section Title */}
         <motion.div
@@ -101,20 +101,36 @@ export default function Brands(): ReactNode {
         {/* Marquee Container */}
         <div className="relative overflow-hidden">
           <motion.div
-            animate={{ x: [0, -50 * brands.length] }}
+            animate={{ x: [0, -33.33 * brands.length] }}
             transition={{
-              duration: 40,
+              duration: 20,
               repeat: Infinity,
               ease: "linear",
+              repeatType: "loop",
             }}
-            className="flex gap-4!"
+            className="flex gap-4! py-5!"
+            style={{ width: "max-content" }}
           >
             {displayBrands.map((brand, index) => (
               <motion.div
                 key={`${brand.id}-${index}`}
                 whileHover={{ scale: 1.05, rotate: -2 }}
                 transition={{ duration: 0.3 }}
-                className="flex-shrink-0 h-70 w-70 border border-gray-400 flex items-center justify-center px-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all cursor-pointer"
+                className="flex-shrink-0 h-70 w-70  border border-gray-400 flex items-center justify-center px-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all cursor-pointer"
+                onMouseEnter={(e) => {
+                  // Pause animation on hover
+                  const parent = e.currentTarget.parentElement;
+                  if (parent) {
+                    parent.style.animationPlayState = "paused";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  // Resume animation on hover leave
+                  const parent = e.currentTarget.parentElement;
+                  if (parent) {
+                    parent.style.animationPlayState = "running";
+                  }
+                }}
               >
                 <img
                   src={brand.logoUrl}
@@ -128,8 +144,6 @@ export default function Brands(): ReactNode {
           </motion.div>
 
           {/* Fade Edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-gray-100 to-transparent pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-gray-100 to-transparent pointer-events-none" />
         </div>
       </div>
     </section>

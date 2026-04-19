@@ -7,6 +7,15 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import { Logo } from "@/images/logo";
 import { ArrowBigDown } from "lucide-react";
 import { Stickar } from "@/images/stickar";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaTiktok,
+  FaYoutube,
+} from "react-icons/fa";
+import { LiaLinkedin, LiaLinkedinIn } from "react-icons/lia";
+import { BsLinkedin } from "react-icons/bs";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -19,15 +28,15 @@ export default function Footer() {
     <footer
       id="contact"
       ref={footerRef}
-      className="relative! rounded  text-black pt-0! bg-[#eae4d8]"
+      className="relative! rounded-2xl  text-black pt-0! mx-20! bg-[#eae4d8]"
     >
       <div
-        className=" mx-20! h-20! bg-[#eae4d8]"
-        // style={{ clipPath: "polygon(0 0, 100% 0, 100% -20%, 0% 100%)" }}
+        className=" h-20! bg-[#eae4d8] "
+        style={{ clipPath: "polygon(0 100%, 100% 0, 100% 100%)" }}
       />
       <Logo className="h-25 absolute bottom-0 left-5" />
       {/* 2. Logo positioned on the slope */}
-      <div className="relative z-10! max-w-7xl! mx-auto! px-6! ">
+      <div className="relative z-10! mx-auto! max-w-8xl!  px-6! ">
         {/* Main Footer Content - Changed text to black to match the screenshot */}
         <Stickar className="w-20 h-20 absolute right-30 bottom-70 animate-spin duration-100" />
         <div>
@@ -37,7 +46,7 @@ export default function Footer() {
             <div className="flex  gap-12!">
               <div className="flex flex-col justify-evenly">
                 {" "}
-                <div className="flex gap-0.5! items-center  rounded-lg p-1!   ">
+                <div className="flex gap-2! items-center  rounded-lg p-1!   ">
                   {["Expertises", "Work", "About", "Contact"].map((item) => (
                     <Link
                       key={item}
@@ -62,16 +71,16 @@ export default function Footer() {
                 <div className="flex gap-2 items-center">
                   <span>Follow Us</span>
                   <span className="bg-white p-2! rounded-full">
-                    <ArrowBigDown className="w-5 h-5" />
+                    <LiaLinkedinIn className="w-4 h-4" />
                   </span>
                   <span className="bg-white p-2! rounded-full">
-                    <ArrowBigDown className="w-5 h-5" />
+                    <FaTiktok className="w-4 h-4" />
                   </span>
                   <span className="bg-white p-2! rounded-full">
-                    <ArrowBigDown className="w-5 h-5" />
+                    <FaInstagram className="w-4 h-4" />
                   </span>
                   <span className="bg-white p-2! rounded-full">
-                    <ArrowBigDown className="w-5 h-5" />
+                    <FaYoutube className="w-4 h-4" />
                   </span>
                 </div>
               </div>
