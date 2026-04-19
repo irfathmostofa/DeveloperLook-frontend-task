@@ -171,7 +171,7 @@ export default function Expertise(): ReactNode {
                     <motion.div
                       whileHover={{ scale: 1.05, rotate: -2 }}
                       whileTap={{ scale: 0.98 }}
-                      className="flex items-center gap-3 pl-2! pr-1! py-1! rounded-md transition-all duration-300"
+                      className="flex items-center gap-3 pl-2! pr-1! py-1! rounded-md transition-all duration-200"
                       style={{
                         backgroundColor: item.btn_bg_color,
                         color:
