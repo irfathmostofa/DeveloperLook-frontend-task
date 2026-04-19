@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion, Variants, easeInOut } from "framer-motion";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { ReactNode } from "react";
@@ -26,15 +26,15 @@ export default function About(): ReactNode {
     },
   };
 
-  const arrowVariants = {
+  const arrowVariants: Variants = {
     initial: { y: 0, opacity: 1 },
     hover: {
       y: [0, 25, -25, 0],
       opacity: [1, 0, 0, 1],
       transition: {
-        duration: 0.2,
-        times: [0, 0.4],
-        ease: "easeInOut",
+        duration: 0.6,
+        times: [0, 0.33, 0.66, 1],
+        ease: easeInOut,
       },
     },
   };

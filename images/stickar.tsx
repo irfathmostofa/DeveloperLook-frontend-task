@@ -13,7 +13,7 @@ export function Stickar({ className }: { className?: string }) {
           transformStyle: "preserve-3d",
         }}
       >
-        <g clip-path="url(#clip0_10010_1178)">
+        <g clipPath="url(#clip0_10010_1178)">
           <path
             d="M110.006 220.968C170.548 220.968 219.627 171.69 219.627 110.903C219.627 50.1152 170.548 0.837158 110.006 0.837158C49.4632 0.837158 0.383789 50.1152 0.383789 110.903C0.383789 171.69 49.4632 220.968 110.006 220.968Z"
             fill="#FCB8FA"

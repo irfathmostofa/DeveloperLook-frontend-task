@@ -2,78 +2,95 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import { Logo } from "@/images/logo";
+import { ArrowBigDown } from "lucide-react";
 import { Stickar } from "@/images/stickar";
-import { FaInstagram, FaLinkedin, FaTiktok, FaYoutube } from "react-icons/fa";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function Footer() {
+  const footerRef = useRef<HTMLElement>(null);
+
   return (
     <footer
       id="contact"
-      className="relative bg-[#eae4d8] pt-32 pb-10 overflow-hidden"
+      ref={footerRef}
+      className="relative! rounded  text-black pt-0! bg-[#eae4d8]"
     >
-      {/* 1. The Slanted Background Shape */}
       <div
-        className="absolute bottom-0 right-0 w-[70%] h-full bg-[#faf4ec] z-0"
-        style={{
-          clipPath: "polygon(100% 0, 100% 100%, 0% 100%, 15% 30%)",
-        }}
+        className=" mx-20! h-20! bg-[#eae4d8]"
+        // style={{ clipPath: "polygon(0 0, 100% 0, 100% -20%, 0% 100%)" }}
       />
+      <Logo className="h-25 absolute bottom-0 left-5" />
+      {/* 2. Logo positioned on the slope */}
+      <div className="relative z-10! max-w-7xl! mx-auto! px-6! ">
+        {/* Main Footer Content - Changed text to black to match the screenshot */}
+        <Stickar className="w-20 h-20 absolute right-30 bottom-70 animate-spin duration-100" />
+        <div>
+          <div className="flex justify-end ">
+            {/* ... Your existing contactRef, addressRef, linksRef, etc. sections ... */}
 
-      <div className="relative z-10 max-w-7xl mx-auto px-10">
-        <div className="flex flex-col md:flex-row justify-between items-end gap-10">
-          {/* 2. Large Bottom-Left Logo */}
-          <div className="w-1/3">
-            <Logo className="w-full max-w-[300px] h-auto opacity-90" />
-          </div>
-
-          {/* 3. Navigation and Contact Info */}
-          <div className="flex flex-col gap-12 items-end">
-            {/* Spinning Sticker */}
-            <Stickar className="w-24 h-24 absolute -top-20 right-10 animate-spin-slow" />
-
-            <div className="flex gap-16 text-left">
-              {/* Links & Socials Column */}
-              <div className="flex flex-col gap-8">
-                <div className="flex gap-2 bg-white p-1.5 rounded-xl shadow-sm">
+            <div className="flex  gap-12!">
+              <div className="flex flex-col justify-evenly">
+                {" "}
+                <div className="flex gap-0.5! items-center  rounded-lg p-1!   ">
                   {["Expertises", "Work", "About", "Contact"].map((item) => (
                     <Link
                       key={item}
                       href="#"
-                      className="px-4 py-2 text-[13px] font-bold text-[#161616] hover:bg-black hover:text-white rounded-lg transition-all"
+                      className="relative px-3! py-1.5! bg-white text-sm font-medium rounded-md overflow-hidden group"
                     >
-                      {item}
+                      {/* Orange top border */}
+
+                      {/* Orange gradient - slides up first */}
+                      <span className="absolute inset-0 bg-gradient-to-r from-orange-400 to-orange-500 rounded-md transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+
+                      {/* Black - slides up second (delayed) */}
+                      <span className="absolute inset-0 bg-gray-900 rounded-md transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out delay-75" />
+
+                      {/* Text */}
+                      <span className="relative z-10 text-[12px] text-[#161616]! font-bold group-hover:text-white! transition-colors animate-bounce duration-200">
+                        {item}
+                      </span>
                     </Link>
                   ))}
                 </div>
-
-                <div className="flex items-center gap-4">
-                  <span className="font-bold text-sm">Follow us</span>
-                  <div className="flex gap-2">
-                    {[FaLinkedin, FaTiktok, FaInstagram, FaYoutube].map(
-                      (Icon, i) => (
-                        <div
-                          key={i}
-                          className="bg-white p-2 rounded-full shadow-sm cursor-pointer hover:scale-110 transition-transform"
-                        >
-                          <Icon size={18} />
-                        </div>
-                      ),
-                    )}
-                  </div>
+                <div className="flex gap-2 items-center">
+                  <span>Follow Us</span>
+                  <span className="bg-white p-2! rounded-full">
+                    <ArrowBigDown className="w-5 h-5" />
+                  </span>
+                  <span className="bg-white p-2! rounded-full">
+                    <ArrowBigDown className="w-5 h-5" />
+                  </span>
+                  <span className="bg-white p-2! rounded-full">
+                    <ArrowBigDown className="w-5 h-5" />
+                  </span>
+                  <span className="bg-white p-2! rounded-full">
+                    <ArrowBigDown className="w-5 h-5" />
+                  </span>
                 </div>
               </div>
-
-              {/* Address & Contact Column */}
-              <div className="flex gap-12">
-                <div>
-                  <h3 className="font-bold text-gray-900 mb-2">Contact</h3>
-                  <p className="text-sm text-gray-700">info@gethyped.nl</p>
-                  <p className="text-sm text-gray-700">+31 6 1533 7496</p>
+              <div className="flex flex-col">
+                {" "}
+                {/* Note: Ensure you change text-gray-400 to text-gray-600 for better visibility on white/beige */}
+                <div className="opacity-100!">
+                  {" "}
+                  {/* Simplified for example */}
+                  <h3 className="text-lg font-bold mb-6!">Contact</h3>
+                  <div className="space-y-3">
+                    <p className="text-gray-600">info@gethyped.nl</p>
+                    <p className="text-gray-600">+31 6 1533 7496</p>
+                  </div>
                 </div>
+                {/* Adres */}
                 <div>
-                  <h3 className="font-bold text-gray-900 mb-2">Adres</h3>
-                  <p className="text-sm text-gray-700">
+                  <h3 className="text-lg font-bold ">Adres</h3>
+                  <p className="text-gray-600">
                     Beltrumsestraat 6,
                     <br />
                     7141 AL Groenlo
@@ -81,18 +98,17 @@ export default function Footer() {
                 </div>
               </div>
             </div>
-
-            {/* 4. Bottom Bar */}
-            <div className="w-full flex justify-between pt-10 text-[11px] text-gray-500 font-medium">
+          </div>{" "}
+          <div className="flex  justify-end  py-5!">
+            {" "}
+            <div className="text-xs text-gray-500 flex items-center gap-20  ">
               <p>© 2025 Get Hyped</p>
-              <div className="flex gap-8">
-                <p className="hover:text-orange-600 cursor-pointer">
-                  Design by Dylan
-                </p>
-                <p className="hover:text-orange-600 cursor-pointer">
-                  Privacyvoorwaarden
-                </p>
-              </div>
+              <p className="hover:text-[#fa5424] cursor-pointer">
+                Design by Dylan
+              </p>
+              <p className="hover:text-[#fa5424] cursor-pointer">
+                Privacyvoorwaarden
+              </p>
             </div>
           </div>
         </div>
