@@ -82,7 +82,7 @@ export default function Expertise(): ReactNode {
                   {item.title}
                 </h2>
 
-                <div className="max-w-[310px]">
+                <div className="max-w-77.5">
                   <h3 className="text-[18px]! font-bold mb-4! text-[#161616]!">
                     {item.short_description}
                   </h3>
