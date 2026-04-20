@@ -1,5 +1,6 @@
 "use client";
 
+import { cards } from "@/data/hero";
 import { motion, Variants } from "framer-motion";
 import { ReactNode, useEffect, useState } from "react";
 
@@ -47,44 +48,7 @@ export default function Hero(): ReactNode {
   const cardRotations = [4, 4, -2, -2]; // Reduced rotation degrees for better visibility
 
   // Define the 4 cards as per your specification
-  const cards = [
-    {
-      id: 1,
-      type: "content",
-      number: "10M+",
-      title: "Organische views",
-      subtitle: "Groei door slimme content",
-      video: null,
-      color: "bg-[#0d8dff]",
-    },
-    {
-      id: 2,
-      type: "video",
-      number: null,
-      title: null,
-      subtitle: null,
-      video: "https://gethyped.b-cdn.net/Salontopper/Loop%20Salontopper.mp4",
-      color: null,
-    },
-    {
-      id: 3,
-      type: "content",
-      number: "30+",
-      title: "Merken geholpen",
-      subtitle: "Van start-up tot multinational",
-      video: null,
-      color: "bg-[#33c791]",
-    },
-    {
-      id: 4,
-      type: "video",
-      number: null,
-      title: null,
-      subtitle: null,
-      video: "https://gethyped.b-cdn.net/Petrol%20Head/petrolhead-loop.mp4",
-      color: null,
-    },
-  ];
+ 
 
   return (
     <section className="pt-32! pb-18! px-4 sm:px-6 lg:px-8 relative overflow-x-clip overflow-y-visible min-h-screen flex items-center">

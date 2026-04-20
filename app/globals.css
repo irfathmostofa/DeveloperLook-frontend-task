@@ -5,12 +5,12 @@
   padding: 0;
   box-sizing: border-box;
 }
-/* body {
+body {
   font-family: "Inter", sans-serif;
   background-color: #f9f9f9;
   color: #333;
   line-height: 1.6;
-} */
+}
 /* Firefox */
 html {
   scrollbar-width: none;

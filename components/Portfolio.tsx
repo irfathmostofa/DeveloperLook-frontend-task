@@ -5,49 +5,7 @@ import { useState, ReactNode, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-
-interface Card {
-  id: number;
-  title: string;
-  brand: string;
-  imageUrl: string;
-  videoUrl: string;
-  link: string;
-  color: string;
-}
-
-const cards: Card[] = [
-  {
-    id: 1,
-    title: "Van nul naar vol, binnen 3 weken",
-    brand: "Bullit",
-    imageUrl:
-      "https://cdn.prod.website-files.com/6848603da8e6ac95794b74a9/69c3d06cc7a0b07e150a671d_Bullit%20branded%20placeholder_2.1.1.avif",
-    videoUrl: "https://gethyped.b-cdn.net/Bullit/Bullit%20%7C%20Loop.mp4",
-    link: "/work/bullit",
-    color: "from-[#fa5424]",
-  },
-  {
-    id: 2,
-    title: "Zacht in smaak, sterk in beeld",
-    brand: "Roasta",
-    imageUrl:
-      "https://cdn.prod.website-files.com/6848603da8e6ac95794b74a9/68716a54a3bf63bf25c2ae92_roasta-placeholder.avif",
-    videoUrl: "https://gethyped.b-cdn.net/Roasta/roasta-loop.mp4",
-    link: "/work/roasta",
-    color: "from-[#0d8dff]",
-  },
-  {
-    id: 3,
-    title: "Content die écht smaakt (en raakt)",
-    brand: "Loco",
-    imageUrl:
-      "https://cdn.prod.website-files.com/6848603da8e6ac95794b74a9/68716b4e8982337b1d3d1bd7_loco-loco-placeholder.avif",
-    videoUrl: "https://gethyped.b-cdn.net/Loco/loco-bites-loop.mp4",
-    link: "/work/loco-loco",
-    color: "from-[#33c791]",
-  },
-];
+import { PortfolioData } from "@/data/portfolio";
 
 export default function Portfolio(): ReactNode {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
@@ -101,11 +59,11 @@ export default function Portfolio(): ReactNode {
         {/* Cards Container */}
         <div className="relative w-full h-[500px] perspective">
           <div className="absolute inset-0 flex items-end justify-center lg:justify-start gap-6 lg:gap-12">
-            {cards.map((card, index) => (
+            {PortfolioData.map((data, index) => (
               <motion.div
-                key={card.id}
-                onHoverStart={() => handleHover(card.id, true)}
-                onHoverEnd={() => handleHover(card.id, false)}
+                key={data.id}
+                onHoverStart={() => handleHover(data.id, true)}
+                onHoverEnd={() => handleHover(data.id, false)}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -115,7 +73,7 @@ export default function Portfolio(): ReactNode {
                   marginBottom: `${index * 70}px`,
                 }}
               >
-                <Link href={card.link}>
+                <Link href={data.link}>
                   {/* Card with border */}
                   <motion.div
                     whileHover={{ scale: 1.05, rotate: -2 }}
@@ -135,14 +93,14 @@ export default function Portfolio(): ReactNode {
                     {/* Image Background */}
                     <motion.div
                       animate={{
-                        opacity: hoveredId === card.id ? 0 : 1,
+                        opacity: hoveredId === data.id ? 0 : 1,
                       }}
                       transition={{ duration: 0.3 }}
                       className="absolute inset-0"
                     >
                       <Image
-                        src={card.imageUrl}
-                        alt={card.title}
+                        src={data.imageUrl}
+                        alt={data.title}
                         fill
                         className="object-cover"
                       />
@@ -151,14 +109,14 @@ export default function Portfolio(): ReactNode {
                     {/* Video Overlay */}
                     <motion.video
                       ref={(el) => {
-                        if (el) videoRefs.current[card.id] = el;
+                        if (el) videoRefs.current[data.id] = el;
                       }}
-                      src={card.videoUrl}
+                      src={data.videoUrl}
                       muted
                       loop
                       playsInline
                       animate={{
-                        opacity: hoveredId === card.id ? 1 : 0,
+                        opacity: hoveredId === data.id ? 1 : 0,
                       }}
                       transition={{ duration: 0.3 }}
                       className="absolute inset-0 w-full h-full object-cover"
@@ -201,11 +159,11 @@ export default function Portfolio(): ReactNode {
                     >
                       <div className="">
                         <h3 className="text-white max-w-40 font-bold text-lg md:text-xl mb-2! leading-tight line-clamp-2">
-                          {card.title}
+                          {data.title}
                         </h3>
                         <div className="flex items-center gap-2">
                           <span className="text-white text-xs font-bold bg-white/40 bg-opacity-30 px-3! py-1! rounded-full">
-                            {card.brand}
+                            {data.brand}
                           </span>
                         </div>
 
