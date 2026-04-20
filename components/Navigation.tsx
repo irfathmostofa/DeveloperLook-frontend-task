@@ -36,24 +36,21 @@ export default function Navigation(): ReactNode {
           animate={{ y: 0 }}
           exit={{ y: "-100%" }}
           transition={{ duration: 0.3 }}
-          className="fixed top-0 left-0 px-10 right-0 z-50  "
+          className="fixed top-0 left-0 px-10 right-0 z-50"
         >
           <div className="max-w-full px-7! mx-auto h-21 flex items-center justify-between">
             {/* Logo */}
-
-            <Logo className="h-14 " />
+            <Logo className="h-14 z-10" />
 
             {/* Desktop Navigation - Centered */}
             <div className="hidden md:flex absolute left-1/2 -translate-x-1/2">
-              <div className="flex gap-0.5! items-center bg-white rounded-lg p-1!  ">
+              <div className="flex gap-0.5! items-center bg-white rounded-lg p-1!">
                 {["Expertises", "Work", "About", "Contact"].map((item) => (
                   <Link
                     key={item}
                     href="#"
                     className="relative px-3! py-1.5! text-sm font-medium rounded-md overflow-hidden group"
                   >
-                    {/* Orange top border */}
-
                     {/* Orange gradient - slides up first */}
                     <span className="absolute inset-0 bg-gradient-to-r from-orange-400 to-orange-500 rounded-md transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
 
@@ -61,7 +58,7 @@ export default function Navigation(): ReactNode {
                     <span className="absolute inset-0 bg-gray-900 rounded-md transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out delay-75" />
 
                     {/* Text */}
-                    <span className="relative z-10 text-[12px] text-[#161616]! font-semibold group-hover:text-white! transition-colors animate-bounce duration-200">
+                    <span className="relative z-10 text-[12px] text-[#161616]! font-semibold group-hover:text-white! transition-colors duration-200">
                       {item}
                     </span>
                   </Link>
@@ -73,7 +70,7 @@ export default function Navigation(): ReactNode {
             <div className="hidden md:flex items-center shrink-0">
               <Link
                 href="#"
-                className="group relative px-5  rounded-md bg-[#fcb8fa]  transition-all duration-300 hover:-rotate-5 "
+                className="group relative px-5 rounded-md bg-[#fcb8fa] transition-all duration-300 hover:-rotate-5"
               >
                 <div className="flex items-center gap-2 p-1.5!">
                   <span className="text-sm font-semibold text-gray-900">
@@ -89,56 +86,65 @@ export default function Navigation(): ReactNode {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden flex flex-col gap-1.5 w-8 h-6 justify-center items-center"
+              className={`md:hidden flex flex-col z-10 gap-1.5 w-8 h-6 ${isMenuOpen ? "bg-white" : "bg-[#fcb8fa]"} rounded p-2! justify-center items-center`}
               aria-label="Toggle menu"
             >
               <motion.span
-                animate={isMenuOpen ? { rotate: 45, y: 6 } : {}}
+                animate={
+                  isMenuOpen ? { rotate: 40, y: 6 } : { rotate: 0, y: 0 }
+                }
                 className="w-5 h-0.5 bg-gray-900 rounded-full transition-colors"
               />
+
               <motion.span
-                animate={isMenuOpen ? { opacity: 0 } : {}}
-                className="w-5 h-0.5 bg-gray-900 rounded-full transition-colors"
-              />
-              <motion.span
-                animate={isMenuOpen ? { rotate: -45, y: -6 } : {}}
+                animate={
+                  isMenuOpen ? { rotate: -40, y: -6 } : { rotate: 0, y: 0 }
+                }
                 className="w-5 h-0.5 bg-gray-900 rounded-full transition-colors"
               />
             </button>
           </div>
 
-          {/* Mobile Menu */}
+          {/* Mobile Menu - Full Screen */}
           <AnimatePresence>
             {isMenuOpen && (
               <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="md:hidden absolute top-16 left-4 right-4 bg-white rounded-2xl shadow-xl border border-gray-100"
+                className="md:hidden fixed inset-0 top-2 mx-2! rounded bg-[#fcb8fa] z-40 flex flex-col items-center justify-between p-8 pt-16"
               >
-                <div className="p-4 flex flex-col gap-1">
+                {/* Navigation Items */}
+                <div className="flex flex-col gap-4! items-center w-full">
                   {["Expertises", "Work", "About", "Contact"].map((item) => (
                     <Link
                       key={item}
                       href="#"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="py-3 px-4 rounded-xl text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200 font-medium"
+                      className="relative px-3! py-1.5! text-sm font-medium rounded-md overflow-hidden group bg-white"
                     >
-                      {item}
+                      {/* Orange gradient - slides up first */}
+                      <span className="absolute inset-0 bg-gradient-to-r from-orange-400 to-orange-500 rounded-md transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+
+                      {/* Black - slides up second (delayed) */}
+                      <span className="absolute inset-0 bg-gray-900 rounded-md transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out delay-75" />
+
+                      {/* Text */}
+                      <span className="relative z-10 text-[12px] text-[#161616]! font-semibold group-hover:text-white! transition-colors duration-200">
+                        {item}
+                      </span>
                     </Link>
                   ))}
-
-                  <div className="h-px bg-gray-100 my-2" />
-
-                  <Link
-                    href="#"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="mt-1 px-4 py-3 bg-[#fcb8fa] rounded-xl font-semibold flex justify-between items-center text-white"
-                  >
-                    Get Results <span>🔥</span>
-                  </Link>
                 </div>
+
+                {/* Get Results Button */}
+                <Link
+                  href="#"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="px-8 py-3 bg-gray-900 text-white rounded-full font-bold flex items-center justify-center gap-2 mb-8"
+                >
+                  Get Results <span>🔥</span>
+                </Link>
               </motion.div>
             )}
           </AnimatePresence>

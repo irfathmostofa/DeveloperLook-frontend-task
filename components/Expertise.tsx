@@ -148,14 +148,14 @@ export default function Expertise(): ReactNode {
                 <span
                   style={{
                     backgroundColor:
-                      item.btn_bg_color === "#fa5424" ? "#FAF4EC" : "#FFFFFF",
+                      item.btn_bg_color === "#fa5424" ? "#eae4d8" : "#FFFFFF",
                   }}
-                  className="px-3! py-1! rounded bg-white text-md font-medium mb-6! inline-block"
+                  className="px-3! py-1! rounded bg-white text-md font-semibold mb-6! inline-block"
                 >
                   {item.tagline}
                 </span>
 
-                <h2 className="text-6xl! text-[#161616]! font-bold mb-30! tracking-tight">
+                <h2 className="text-8xl! text-[#161616]! font-bold mb-30! tracking-tight">
                   {item.title}
                 </h2>
 
@@ -163,7 +163,7 @@ export default function Expertise(): ReactNode {
                   <h3 className="text-[18px]! font-bold mb-4! text-[#161616]!">
                     {item.short_description}
                   </h3>
-                  <p className="text-[16px]! leading-normal mb-4! text-[#161616]!">
+                  <p className="text-[16px]!  leading-normal mb-4! text-[#161616]!">
                     {item.description}
                   </p>
 

@@ -83,7 +83,7 @@ export default function Brands(): ReactNode {
   const displayBrands: Brand[] = [...brands, ...brands, ...brands];
 
   return (
-    <section className="py-15! px-6!">
+    <section className="py-15! ">
       <div className="max-w-full! mx-auto!">
         {/* Section Title */}
         <motion.div
@@ -91,9 +91,9 @@ export default function Brands(): ReactNode {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-16!"
+          className="mb-12!"
         >
-          <h2 className="text-4xl md:text-5xl max-w-80 font-bold">
+          <h2 className="text-4xl md:text-5xl max-w-100 text-[#161616] font-bold px-8!">
             These brands got hyped.
           </h2>
         </motion.div>
@@ -103,7 +103,7 @@ export default function Brands(): ReactNode {
           <motion.div
             animate={{ x: [0, -33.33 * brands.length] }}
             transition={{
-              duration: 20,
+              duration: 5, // Changed from 20 to 12 for faster speed
               repeat: Infinity,
               ease: "linear",
               repeatType: "loop",
@@ -116,7 +116,7 @@ export default function Brands(): ReactNode {
                 key={`${brand.id}-${index}`}
                 whileHover={{ scale: 1.05, rotate: -2 }}
                 transition={{ duration: 0.3 }}
-                className="flex-shrink-0 h-70 w-70  border border-gray-400 flex items-center justify-center px-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all cursor-pointer"
+                className="flex-shrink-0 h-70 w-70 border border-gray-400 flex items-center justify-center px-6 rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer"
                 onMouseEnter={(e) => {
                   // Pause animation on hover
                   const parent = e.currentTarget.parentElement;
@@ -145,6 +145,7 @@ export default function Brands(): ReactNode {
 
           {/* Fade Edges */}
         </div>
+        <hr className=" mx-8! text-gray-300 mt-20! mb-40!" />
       </div>
     </section>
   );

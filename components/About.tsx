@@ -40,8 +40,8 @@ export default function About(): ReactNode {
   };
 
   return (
-    <section className="py-12! px-4!">
-      <div className="max-w-5xl mx-auto">
+    <section className="py-12! px-4! mb-30!">
+      <div className="max-w-6xl mx-auto">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -51,7 +51,7 @@ export default function About(): ReactNode {
           {/* Main Heading */}
           <motion.h2
             variants={itemVariants}
-            className="text-5xl! text-[#161616] font-bold! text-justify mb-14! max-w-5xl! px-30! mx-auto! tracking-normal! leading-12"
+            className="text-[50px]! text-[#161616] font-bold! text-justify mb-14! pl-28! pr-52! mx-auto! tracking-normal! leading-12"
           >
             Wij maken content die opvalt. Die blijft hangen. Die jouw doelgroep
             raakt en jouw merk in beweging brengt. Snel, krachtig en energiek.

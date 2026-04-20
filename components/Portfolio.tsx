@@ -88,7 +88,7 @@ export default function Portfolio(): ReactNode {
         <motion.div
           whileHover={{ scale: 1.05, rotate: -2 }}
           whileTap={{ scale: 0.95 }}
-          className="flex items-center max-w-37 gap-0.5! px-1! py-0.5! border border-gray-900 rounded-md group hover:bg-gray-50 transition-colors "
+          className="flex items-center max-w-37 gap-0.5! px-0.5! py-0.5! border border-gray-900 rounded-md group hover:bg-gray-50 transition-colors "
         >
           <span className="text-sm font-semibold text-gray-900">
             Leer ons kennen
@@ -112,7 +112,7 @@ export default function Portfolio(): ReactNode {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="relative flex-shrink-0 w-64 md:w-72 lg:w-80 group cursor-pointer"
                 style={{
-                  marginBottom: `${index * 60}px`,
+                  marginBottom: `${index * 70}px`,
                 }}
               >
                 <Link href={card.link}>
@@ -173,6 +173,9 @@ export default function Portfolio(): ReactNode {
                             ? "from-[#0d8dff] to-[#0d8dff]"
                             : "from-[#33c791] to-[#33c791]"
                       }`}
+                      style={{
+                        clipPath: "polygon(552% 367%, 93% -4%, 8% 64%)",
+                      }}
                     >
                       {" "}
                       <motion.div

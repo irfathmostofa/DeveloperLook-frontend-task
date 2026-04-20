@@ -4,12 +4,12 @@ import { ReactNode } from "react";
 import { motion, Variants } from "framer-motion";
 export default function CTA(): ReactNode {
   return (
-    <section className=" py-36! px-6! overflow-hidden">
+    <section className=" pt-36! pb-5! px-6! overflow-hidden">
       {/* Animated background elements */}
 
       <div className="max-w-full mx-auto text-center z-10">
         {/* Main Heading */}
-        <h2 className="text-7xl! md:text-6xl font-bold text-[#161616] mb-6! ">
+        <h2 className="text-[80px]! md:text-6xl font-bold text-[#161616] mb-6! ">
           Let's Get Hyped!
         </h2>
 
@@ -17,7 +17,7 @@ export default function CTA(): ReactNode {
           <motion.div
             whileHover={{ scale: 1.05, rotate: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-4 px-1! py-1! border border-gray-900 rounded-md group hover:bg-gray-50 transition-colors"
+            className="flex items-center gap-4 px-1! py-1! border border-gray-900 rounded-md group  transition-colors"
           >
             <span className="text-sm font-semibold text-gray-900">
               Mail Ons direct
@@ -36,8 +36,8 @@ export default function CTA(): ReactNode {
             <span className="text-sm font-semibold text-[#FFFFFF]">
               Get Results
             </span>
-            <span className="p-1.5! bg-[#FFFFFF] text-[#fa5424] rounded-md">
-              <Flame className="w-4 h-4" />
+            <span className=" w-7 h-7 bg-[#FFFFFF] text-[#fa5424] rounded-md">
+              🔥
             </span>
           </motion.div>
         </div>

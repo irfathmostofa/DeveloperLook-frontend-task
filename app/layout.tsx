@@ -69,9 +69,9 @@ export default function RootLayout({ children }: RootLayoutProps): ReactNode {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="canonical" href="https://gethyped.nl" />
-        <meta name="theme-color" content="#ec4899" />
+        <meta name="theme-color" content="#faf4ec" />
       </head>
-      <body className="antialiased bg-[#faf4ec]">{children}</body>
+      <body className="antialiased bg-[#faf4ec]!">{children}</body>
     </html>
   );
 }
