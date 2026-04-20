@@ -40,7 +40,7 @@ export default function Navigation(): ReactNode {
         >
           <div className="max-w-full px-7! mx-auto h-21 flex items-center justify-between">
             {/* Logo */}
-            <Logo className="h-14 z-10" />
+            <Logo className="h-14 z-50!" />
 
             {/* Desktop Navigation - Centered */}
             <div className="hidden md:flex absolute left-1/2 -translate-x-1/2">
@@ -86,7 +86,7 @@ export default function Navigation(): ReactNode {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`md:hidden flex flex-col z-10 gap-1.5 w-8 h-6 ${isMenuOpen ? "bg-white" : "bg-[#fcb8fa]"} rounded p-2! justify-center items-center`}
+              className={`md:hidden flex flex-col z-50! gap-1.5 w-8 h-6 ${isMenuOpen ? "bg-white" : "bg-[#fcb8fa]"} rounded p-2! justify-center items-center`}
               aria-label="Toggle menu"
             >
               <motion.span
@@ -113,56 +113,43 @@ export default function Navigation(): ReactNode {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="md:hidden fixed inset-0 top-21 bg-[#fcb8fa] z-40 flex flex-col items-center justify-between p-8 pt-16"
+                className="md:hidden fixed inset-0 top-2! mx-2! rounded bg-[#fcb8fa] z-40! flex flex-col items-center justify-between p-8 pt-16"
               >
-                {/* Close Button */}
-                <button
-                  onClick={() => setIsMenuOpen(false)}
-                  className="absolute top-6 right-6 p-2 bg-white rounded-lg z-50"
-                  aria-label="Close menu"
-                >
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-
                 {/* Navigation Items */}
-                <div className="flex flex-col gap-4 items-center w-full">
-                  {["Expertises", "Work", "About", "Contact"].map(
-                    (item, index) => (
-                      <Link
-                        key={item}
-                        href="#"
-                        onClick={() => setIsMenuOpen(false)}
-                        className={`px-8 py-3 rounded-2xl font-bold text-lg transition-all min-w-max ${
-                          index === 3
-                            ? "bg-gray-900 text-white"
-                            : "bg-white text-gray-900"
-                        }`}
-                      >
+                <div className="flex flex-col gap-4 mt-30! items-center w-full">
+                  {["Expertises", "Work", "About", "Contact"].map((item) => (
+                    <Link
+                      key={item}
+                      href="#"
+                      className="relative px-3! bg-white py-1.5! text-sm font-medium rounded-md overflow-hidden group"
+                    >
+                      {/* Orange gradient - slides up first */}
+                      <span className="absolute inset-0 bg-gradient-to-r from-orange-400 to-orange-500 rounded-md transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+
+                      {/* Black - slides up second (delayed) */}
+                      <span className="absolute inset-0 bg-gray-900 rounded-md transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out delay-75" />
+
+                      {/* Text */}
+                      <span className="relative z-10 text-[20px] text-[#161616]! font-semibold group-hover:text-white! transition-colors duration-200">
                         {item}
-                      </Link>
-                    ),
-                  )}
+                      </span>
+                    </Link>
+                  ))}
                 </div>
 
                 {/* Get Results Button */}
                 <Link
                   href="#"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="px-8 py-3 bg-gray-900 text-white rounded-full font-bold flex items-center justify-center gap-2 mb-8"
+                  className="group relative px-5 bg-[#161616] rounded-md  transition-all duration-300 hover:-rotate-5"
                 >
-                  Get Results <span>🔥</span>
+                  <div className="flex items-center gap-2 p-1.5!">
+                    <span className="text-sm font-semibold text-white">
+                      Get Results
+                    </span>
+                    <span className="text-sm px-2! py-1! bg-white rounded-md">
+                      🔥
+                    </span>
+                  </div>
                 </Link>
               </motion.div>
             )}

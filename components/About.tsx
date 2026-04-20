@@ -41,7 +41,7 @@ export default function About(): ReactNode {
 
   return (
     <section className="py-12! px-4! mb-30!">
-      <div className="max-w-6xl mx-auto">
+      <div className="md:max-w-6xl! mx-auto">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -51,7 +51,7 @@ export default function About(): ReactNode {
           {/* Main Heading */}
           <motion.h2
             variants={itemVariants}
-            className="text-[50px]! text-[#161616] font-bold! text-justify mb-14! pl-28! pr-52! mx-auto! tracking-normal! leading-12"
+            className="text-[30px]! md:text-[50px]! text-[#161616] font-bold! text-justify mb-14! md:pl-28! md:pr-52! mx-auto! tracking-tighter md:tracking-normal! leading-12"
           >
             Wij maken content die opvalt. Die blijft hangen. Die jouw doelgroep
             raakt en jouw merk in beweging brengt. Snel, krachtig en energiek.
@@ -66,13 +66,13 @@ export default function About(): ReactNode {
           variants={itemVariants}
           src="https://cdn.prod.website-files.com/6848603da8e6ac95794b7498/6894757aa6dd3f84f6e463a2_Anniek%20Bril.webp"
           alt="Team member"
-          className="w-[218px]! h-[281px]! object-cover rounded-lg shadow-xl"
+          className="w-[118px]! h-[181px]!  md:w-[218px]! md:h-[281px]! object-cover rounded-lg shadow-xl"
         />
 
         {/* Right Side - Text */}
         <motion.div
           variants={itemVariants}
-          className="flex-1 space-y-4! ml-40! mt-20!"
+          className="md:flex-1 space-y-4! ml-40! mt-20!"
         >
           <p className="text-[22px] text-gray-900 font-bold leading-[29px]!">
             We stoppen niet bij mooie plaatjes en

@@ -99,7 +99,7 @@ export default function Hero(): ReactNode {
           {/* Main Headline */}
           <motion.h1
             variants={itemVariants}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-[90px] lg:leading-[86px] font-bold mb-6! tracking-tight text-center sm:text-left text-[#161616]"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-[90px] lg:leading-[86px] font-bold mb-6! tracking-tight  sm:text-left text-[#161616]"
           >
             Get Hyped. Get
             <br />
@@ -109,7 +109,7 @@ export default function Hero(): ReactNode {
           {/* Subtitle */}
           <motion.p
             variants={itemVariants}
-            className="text-base sm:text-lg md:text-xl font-bold text-gray-900 max-w-2xl mt-5 mb-12! md:mb-16 text-center sm:text-left"
+            className="text-base sm:text-lg md:text-xl font-bold text-gray-900 max-w-2xl mt-5 mb-12! md:mb-16 sm:text-left"
           >
             Klaar met gokken op content <br /> die niets oplevert?
           </motion.p>
